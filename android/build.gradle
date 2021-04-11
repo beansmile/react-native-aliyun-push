@@ -35,7 +35,7 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.facebook.react:react-native:+'
 
-    api ('com.aliyun.ams:alicloud-android-push:3.1.6') {
+    api ('com.aliyun.ams:alicloud-android-push:3.2.5') {
         exclude module:'alicloud-android-utdid'
     }
     api ('com.aliyun.ams:alicloud-android-utils:1.1.3') {
@@ -48,12 +48,16 @@ dependencies {
     api ('com.aliyun.ams:alicloud-android-ut:5.4.0') {
         exclude module:'alicloud-android-utdid'
     }
-    api (name: 'alicloud-android-third-push-3.0.9', ext: 'aar') {
+    api ('com.aliyun.ams:alicloud-android-third-push:3.2.5') {
         exclude module:'alicloud-android-utdid'
     }
 
-    // huawei
-    // api 'com.google.firebase:firebase-messaging:17.6.0'
+    api ('com.aliyun.ams:alicloud-android-third-push-fcm:3.2.5') {
+    exclude module:'alicloud-android-utdid'
+  }
+
+
+  // huawei
     // api ('com.aliyun.ams:huawei-push:2.6.3.305') {
     //     exclude module:'alicloud-android-utdid'
     // }

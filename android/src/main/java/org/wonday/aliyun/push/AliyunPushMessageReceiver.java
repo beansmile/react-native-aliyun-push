@@ -54,9 +54,6 @@ public class AliyunPushMessageReceiver extends MessageReceiver {
 
     @Override
     protected void onMessage(Context context, CPushMessage cPushMessage) {
-
-        super.onMessage(context, cPushMessage);
-
         WritableMap params = Arguments.createMap();
         params.putString("messageId", cPushMessage.getMessageId());
         params.putString("body", cPushMessage.getContent());
@@ -69,8 +66,6 @@ public class AliyunPushMessageReceiver extends MessageReceiver {
     @Override
     protected void onNotification(Context context, String title, String content, Map<String, String> extraMap) {
         FLog.d(ReactConstants.TAG, "onNotification.");
-
-        super.onNotification(context, title, content, extraMap);
 
         WritableMap params = Arguments.createMap();
         params.putString("body", content);
@@ -91,8 +86,6 @@ public class AliyunPushMessageReceiver extends MessageReceiver {
     protected void onNotificationOpened(Context context, String title, String content, String extraMap) {
         FLog.d(ReactConstants.TAG, "onNotificationOpened.");
 
-        super.onNotificationOpened(context, title, content, extraMap);
-
         WritableMap params = Arguments.createMap();
         params.putString("body", content);
         params.putString("title", title);
@@ -107,9 +100,6 @@ public class AliyunPushMessageReceiver extends MessageReceiver {
     @Override
     protected void onNotificationClickedWithNoAction(Context context, String title, String content, String extraMap) {
         FLog.d(ReactConstants.TAG, "onNotificationClickedWithNoAction.");
-
-        super.onNotificationOpened(context, title, content, extraMap);
-
         WritableMap params = Arguments.createMap();
         params.putString("body", content);
         params.putString("title", title);
@@ -124,9 +114,6 @@ public class AliyunPushMessageReceiver extends MessageReceiver {
     @Override
     protected void onNotificationRemoved(Context context, String messageId){
         FLog.d(ReactConstants.TAG, "onNotificationRemoved: messageId=" +  messageId);
-
-        super.onNotificationRemoved(context, messageId);
-
         WritableMap params = Arguments.createMap();
         params.putString("messageId", messageId);
 
@@ -139,8 +126,6 @@ public class AliyunPushMessageReceiver extends MessageReceiver {
     @Override
     public void onNotificationReceivedInApp(Context context, String title, String content, Map<String, String> extraMap, int openType, String openActivity, String openUrl) {
         FLog.d(ReactConstants.TAG, "onNotificationReceivedInApp");
-
-        super.onNotificationReceivedInApp(context, title, content, extraMap, openType, openActivity, openUrl);
 
         WritableMap params = Arguments.createMap();
         params.putString("content", content);
