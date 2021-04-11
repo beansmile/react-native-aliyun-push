@@ -53,18 +53,18 @@ dependencies {
     }
 
     // huawei
-    api 'com.google.firebase:firebase-messaging:17.6.0'
-    api ('com.aliyun.ams:huawei-push:2.6.3.305') {
-        exclude module:'alicloud-android-utdid'
-    }
-    api ('com.aliyun.ams:huawei-push-base:2.6.3.305') {
-        exclude module:'alicloud-android-utdid'
-    }
+    // api 'com.google.firebase:firebase-messaging:17.6.0'
+    // api ('com.aliyun.ams:huawei-push:2.6.3.305') {
+    //     exclude module:'alicloud-android-utdid'
+    // }
+    // api ('com.aliyun.ams:huawei-push-base:2.6.3.305') {
+    //     exclude module:'alicloud-android-utdid'
+    // }
 
-    // meizu
-    api ('com.aliyun.ams:meizu-push:3.8.3-fix') {
-        exclude module:'alicloud-android-utdid'
-    }
+    // // meizu
+    // api ('com.aliyun.ams:meizu-push:3.8.3-fix') {
+    //     exclude module:'alicloud-android-utdid'
+    // }
 
     // shortcutBadger
     api 'me.leolin:ShortcutBadger:1.1.22@aar'
