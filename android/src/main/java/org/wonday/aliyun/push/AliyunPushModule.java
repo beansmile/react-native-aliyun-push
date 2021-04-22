@@ -8,40 +8,19 @@
 
 package org.wonday.aliyun.push;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
-
-import android.content.BroadcastReceiver;
-import android.app.Activity;
-import android.app.Notification;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.content.Intent;
-import android.content.IntentFilter;
-import android.content.Context;
-import android.os.Handler;
-import android.util.Log;
-
-import com.facebook.react.bridge.NativeModule;
-import com.facebook.react.bridge.ReactApplicationContext;
-import com.facebook.react.bridge.ReactContext;
-import com.facebook.react.bridge.ReactContextBaseJavaModule;
-import com.facebook.react.bridge.ReactMethod;
+import com.alibaba.sdk.android.push.CommonCallback;
+import com.alibaba.sdk.android.push.noonesdk.PushServiceFactory;
+import com.facebook.common.logging.FLog;
 import com.facebook.react.bridge.Callback;
 import com.facebook.react.bridge.LifecycleEventListener;
-import com.facebook.react.bridge.Arguments;
-import com.facebook.react.bridge.WritableMap;
-import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.bridge.Promise;
+import com.facebook.react.bridge.ReactApplicationContext;
+import com.facebook.react.bridge.ReactContextBaseJavaModule;
+import com.facebook.react.bridge.ReactMethod;
+import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.common.ReactConstants;
-import com.facebook.common.logging.FLog;
 
-import com.alibaba.sdk.android.push.CloudPushService;
-import com.alibaba.sdk.android.push.noonesdk.PushServiceFactory;
-import com.alibaba.sdk.android.push.CommonCallback;
 import me.leolin.shortcutbadger.ShortcutBadger;
-
-import org.wonday.aliyun.push.MIUIUtils;
 
 public class AliyunPushModule extends ReactContextBaseJavaModule implements LifecycleEventListener {
     private final ReactApplicationContext context;
@@ -280,6 +259,10 @@ public class AliyunPushModule extends ReactContextBaseJavaModule implements Life
 
     @ReactMethod
     public void getInitialMessage(final Promise promise){
+      try {
         promise.resolve(AliyunPushMessageReceiver.initialMessage);
+      } catch (Exception e) {
+        e.printStackTrace();
+      }
     }
 }
