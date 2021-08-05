@@ -37,13 +37,12 @@ public class ThirdPartMessageActivity extends AndroidPopupActivity {
     protected void onSysNoticeOpened(String title, String summary, Map<String, String> extMap) {
         if (AliyunPushMessageReceiver.instance!=null) {
             AliyunPushMessageReceiver.instance.onNotification(context, title, summary, extMap);
-
-            if (ThirdPartMessageActivity.mainClass!=null) {
-                Intent itent=new Intent();
-                itent.setClass(ThirdPartMessageActivity.this, mainClass);
-                startActivity(itent);
-                ThirdPartMessageActivity.this.finish();
-            }
+        }
+        if (ThirdPartMessageActivity.mainClass!=null) {
+          Intent itent=new Intent();
+          itent.setClass(ThirdPartMessageActivity.this, mainClass);
+          startActivity(itent);
+          ThirdPartMessageActivity.this.finish();
         }
     }
 }
