@@ -45,7 +45,7 @@ public class AliyunPushMessageReceiver extends MessageReceiver {
     public static AliyunPushMessageReceiver instance;
 
     private final String ALIYUN_PUSH_TYPE_MESSAGE = "message";
-    private final String ALIYUN_PUSH_TYPE_NOTIFICATION = "notification";
+    public static final String ALIYUN_PUSH_TYPE_NOTIFICATION = "notification";
 
     public AliyunPushMessageReceiver() {
         super();

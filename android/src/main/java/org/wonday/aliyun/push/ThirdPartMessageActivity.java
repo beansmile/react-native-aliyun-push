@@ -8,14 +8,20 @@
 
 package org.wonday.aliyun.push;
 
-import java.util.Map;
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.content.Context;
+import android.util.Log;
 
 import com.alibaba.sdk.android.push.AndroidPopupActivity;
+import com.facebook.common.logging.FLog;
+import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.ReactApplicationContext;
+import com.facebook.react.bridge.WritableMap;
+import com.facebook.react.common.ReactConstants;
+import com.facebook.react.modules.core.DeviceEventManagerModule;
+import com.google.gson.Gson;
+
+import java.util.Map;
 
 public class ThirdPartMessageActivity extends AndroidPopupActivity {
 
@@ -35,14 +41,37 @@ public class ThirdPartMessageActivity extends AndroidPopupActivity {
      */
     @Override
     protected void onSysNoticeOpened(String title, String summary, Map<String, String> extMap) {
+      Log.d("aaaaaaaaaaa", title + "*****" + summary +"******" + extMap);
+      try {
         if (AliyunPushMessageReceiver.instance!=null) {
-            AliyunPushMessageReceiver.instance.onNotification(context, title, summary, extMap);
+          AliyunPushMessageReceiver.instance.onNotification(context, title, summary, extMap);
         }
         if (ThirdPartMessageActivity.mainClass!=null) {
           Intent itent=new Intent();
           itent.setClass(ThirdPartMessageActivity.this, mainClass);
           startActivity(itent);
           ThirdPartMessageActivity.this.finish();
+
+          Gson gson = new Gson();
+          String extraStr =  gson.toJson(extMap);
+          WritableMap params = Arguments.createMap();
+          params.putString("body", summary);
+          params.putString("title", title);
+          params.putString("extraStr", extraStr);
+
+          params.putString("type", AliyunPushMessageReceiver.ALIYUN_PUSH_TYPE_NOTIFICATION);
+          params.putString("actionIdentifier", "opened");
+          if (context == null) {
+            params.putString("appState", "background");
+            AliyunPushMessageReceiver.initialMessage = params;
+            FLog.d(ReactConstants.TAG, "reactContext==null");
+          }else{
+            context.getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class)
+              .emit("aliyunPushReceived", params);
+          }
         }
+      } catch (Exception e) {
+        e.printStackTrace();
+      }
     }
 }
