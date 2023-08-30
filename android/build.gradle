@@ -34,30 +34,12 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.facebook.react:react-native:+'
 
-    api ('com.aliyun.ams:alicloud-android-push:3.7.7') {
-        exclude module:'alicloud-android-utdid'
-    }
-
-    api ('com.aliyun.ams:alicloud-android-third-push:3.7.7') {
-        exclude module:'alicloud-android-utdid'
-    }
-
-    api ('com.aliyun.ams:alicloud-android-third-push-fcm:3.7.7') {
-      exclude module:'alicloud-android-utdid'
-    }
-
-    api ('com.aliyun.ams:alicloud-android-third-push-xiaomi:3.7.7') {
-      exclude module:'alicloud-android-utdid'
-    }
-
-    api ('com.aliyun.ams:alicloud-android-third-push-huawei:3.7.7') {
-      exclude module:'alicloud-android-utdid'
-    }
-
-
-    api ('com.aliyun.ams:alicloud-android-third-push-oppo:3.7.7') {
-      exclude module:'alicloud-android-utdid'
-    }
+    api ('com.aliyun.ams:alicloud-android-push:3.7.7')
+    api ('com.aliyun.ams:alicloud-android-third-push:3.7.7')
+    api ('com.aliyun.ams:alicloud-android-third-push-fcm:3.7.7')
+    api ('com.aliyun.ams:alicloud-android-third-push-xiaomi:3.7.7')
+    api ('com.aliyun.ams:alicloud-android-third-push-huawei:3.7.7')
+    api ('com.aliyun.ams:alicloud-android-third-push-oppo:3.7.7')
 
     // shortcutBadger
     api 'me.leolin:ShortcutBadger:1.1.22@aar'
