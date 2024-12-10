@@ -51,7 +51,7 @@ public class MIUIUtils {
         if(hasChecked) {
             return isMIUI;
         }
-        
+
         try {
             SystemProperty sp = new SystemProperty(context);
             String ret1 = "";
@@ -70,7 +70,7 @@ public class MIUIUtils {
             e.printStackTrace();
             return false;
         }
-        
+
         return isMIUI;
     }
 
@@ -87,7 +87,7 @@ public class MIUIUtils {
                 PendingIntent contentIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
                 Notification.Builder builder = new Notification.Builder(context)
-                                    .setContentTitle(context.getString(R.string.app_name))
+                                    .setContentTitle(" ")
                                     .setContentText("您有"+Integer.toString(badgeNumber)+"条未读消息")
                                     .setWhen(System.currentTimeMillis())
                                     .setContentIntent(contentIntent)
