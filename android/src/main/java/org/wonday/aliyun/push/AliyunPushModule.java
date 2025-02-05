@@ -265,4 +265,14 @@ public class AliyunPushModule extends ReactContextBaseJavaModule implements Life
         e.printStackTrace();
       }
     }
+
+    @ReactMethod
+    public void addListener(String eventName) {
+        // 为了消除NativeEventEmitter警告添加的方法, 无实际意义
+    }
+
+    @ReactMethod
+    public void removeListeners(Integer count) {
+        // 为了消除NativeEventEmitter警告添加的方法, 无实际意义
+    }
 }
