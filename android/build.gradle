@@ -7,16 +7,9 @@ buildscript {
         google()
         mavenCentral()
     }
-
-    dependencies {
-        classpath 'com.android.tools.build:gradle:4.2.2'
-    }
 }
 
 repositories {
-    flatDir {
-        dirs 'libs'
-    }
     google()
     mavenCentral()
 }
@@ -38,9 +31,6 @@ dependencies {
 
 
     api ('com.aliyun.ams:alicloud-android-third-push-oppo:3.9.2')
-
-    // shortcutBadger
-    api 'me.leolin:ShortcutBadger:1.1.22@aar'
 
     implementation 'com.google.code.gson:gson:2.8.9'
 }

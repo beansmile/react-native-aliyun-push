@@ -8,9 +8,11 @@
 
 package org.wonday.aliyun.push;
 
+import android.app.Activity;
+import android.util.Log;
+
 import com.alibaba.sdk.android.push.CommonCallback;
 import com.alibaba.sdk.android.push.noonesdk.PushServiceFactory;
-import com.facebook.common.logging.FLog;
 import com.facebook.react.bridge.Callback;
 import com.facebook.react.bridge.LifecycleEventListener;
 import com.facebook.react.bridge.Promise;
@@ -18,9 +20,6 @@ import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.ReadableArray;
-import com.facebook.react.common.ReactConstants;
-
-import me.leolin.shortcutbadger.ShortcutBadger;
 
 public class AliyunPushModule extends ReactContextBaseJavaModule implements LifecycleEventListener {
     private final ReactApplicationContext context;
@@ -69,40 +68,7 @@ public class AliyunPushModule extends ReactContextBaseJavaModule implements Life
 
     @ReactMethod
     public void setApplicationIconBadgeNumber(int badgeNumber, final Promise promise) {
-
-        if (MIUIUtils.isMIUI(getReactApplicationContext())) { //小米特殊处理
-            FLog.d(ReactConstants.TAG, "setApplicationIconBadgeNumber for xiaomi");
-
-            if (badgeNumber==0) {
-                promise.resolve("");
-                return;
-            }
-
-            try {
-
-                MIUIUtils.setBadgeNumber(this.context, getCurrentActivity().getClass(), badgeNumber);
-                this.badgeNumber = badgeNumber;
-                promise.resolve("");
-
-            } catch (Exception e) {
-
-                promise.reject(e.getMessage());
-
-            }
-
-
-        } else {
-            FLog.d(ReactConstants.TAG, "setApplicationIconBadgeNumber for normal");
-
-            try {
-                ShortcutBadger.applyCount(this.context, badgeNumber);
-                this.badgeNumber = badgeNumber;
-                promise.resolve("");
-            } catch (Exception e){
-                promise.reject(e.getMessage());
-            }
-        }
-
+        promise.resolve("");
     }
 
     @ReactMethod
@@ -232,28 +198,18 @@ public class AliyunPushModule extends ReactContextBaseJavaModule implements Life
 
     @Override
     public void onHostResume() {
-        ThirdPartMessageActivity.mainClass = getCurrentActivity().getClass();
+        Activity activity = getReactApplicationContext().getCurrentActivity();
+        if (activity != null) {
+            ThirdPartMessageActivity.mainClass = activity.getClass();
+        }
     }
 
     @Override
     public void onHostPause() {
-
-        //小米特殊处理, 处于后台时更新角标， 否则会被系统清除，看不到
-        if (MIUIUtils.isMIUI(getReactApplicationContext())) {
-            FLog.d(ReactConstants.TAG, "onHostPause:setBadgeNumber for xiaomi");
-            MIUIUtils.setBadgeNumber(this.context, getCurrentActivity().getClass(), badgeNumber);
-        }
-
     }
 
     @Override
     public void onHostDestroy() {
-
-        //小米特殊处理, 处于后台时更新角标， 否则会被系统清除，看不到
-        if (MIUIUtils.isMIUI(getReactApplicationContext())) {
-            FLog.d(ReactConstants.TAG, "onHostDestroy:setBadgeNumber for xiaomi");
-            MIUIUtils.setBadgeNumber(this.context, getCurrentActivity().getClass(), badgeNumber);
-        }
 
     }
 

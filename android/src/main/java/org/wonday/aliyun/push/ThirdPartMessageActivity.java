@@ -41,7 +41,6 @@ public class ThirdPartMessageActivity extends AndroidPopupActivity {
      */
     @Override
     protected void onSysNoticeOpened(String title, String summary, Map<String, String> extMap) {
-      Log.d("aaaaaaaaaaa", title + "*****" + summary +"******" + extMap);
       try {
         if (AliyunPushMessageReceiver.instance!=null) {
           AliyunPushMessageReceiver.instance.onNotification(context, title, summary, extMap);
